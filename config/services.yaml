@@ -28,3 +28,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\ImageFinderService:
+        class: App\Service\ImageFinderService
+        arguments:
+            - '%kernel.project_dir%'
+            - '%env(IMAGE_DIRECTORY)%'
+
+    App\Service\ImageResizerService:
+        class: App\Service\ImageResizerService
+        arguments:
+            - '%kernel.project_dir%'
+            - '%env(RESIZED_IMAGE_DIRECTORY)%'
+            - '%env(DROPBOX_FOLDER)%'
+
+    App\Service\DropboxConnectService:
+        class: App\Service\DropboxConnectService
+        arguments:
+            - '%env(DROPBOX_SECRET)%'
